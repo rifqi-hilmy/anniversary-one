@@ -11,9 +11,9 @@
     <style>
       body {
         margin: 0;
-        overflow: auto; /* Diubah dari hidden ke auto untuk mengaktifkan scroll */
+        overflow: hidden; /* Kembali ke hidden untuk mencegah scroll */
         font-family: "Inter", sans-serif;
-        min-height: 100vh; /* Diubah dari height ke min-height */
+        height: 100vh;
         touch-action: manipulation;
         background: linear-gradient(135deg, #f9a8d4, #f3e8ff);
       }
@@ -21,29 +21,29 @@
       #app {
         position: relative;
         width: 100%;
-        min-height: 100vh; /* Diubah untuk konten yang panjang */
-        overflow: visible; /* Diubah dari hidden */
+        height: 100%;
+        overflow: hidden; /* Kembali ke hidden */
       }
 
       #content {
         position: relative;
         z-index: 10;
         width: 100%;
-        min-height: 100vh; /* Diubah untuk konten yang panjang */
+        height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        padding: 80px 20px; /* Ditambah padding atas bawah */
+        padding: 20px;
         box-sizing: border-box;
       }
 
       .step {
-        position: relative; /* Diubah dari absolute untuk mengizinkan scroll */
+        position: absolute; /* Kembali ke absolute */
         width: 100%;
         max-width: 800px;
         padding: 40px;
-        background: rgba(255, 255, 255, 0.8); /* Sedikit lebih opaque */
+        background: rgba(255, 255, 255, 0.8);
         backdrop-filter: blur(10px);
         border-radius: 20px;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
@@ -52,7 +52,7 @@
         transform: translateY(20px);
         transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         pointer-events: none;
-        margin-bottom: 40px; /* Ditambah margin bawah untuk spacing */
+        /* Dihapus margin-bottom */
       }
 
       .step.active {
@@ -227,10 +227,6 @@
         .photo-collage {
           max-width: 320px;
           gap: 8px;
-        }
-
-        #content {
-          padding: 100px 20px 60px; /* Padding disesuaikan untuk mobile */
         }
 
         .step {
@@ -559,12 +555,6 @@
 
         // Show current step
         document.getElementById(`step${stepNumber}`).classList.add("active");
-
-        // Scroll to the active step
-        document.getElementById(`step${stepNumber}`).scrollIntoView({
-          behavior: "smooth",
-          block: "center",
-        });
 
         // Update progress bar
         updateProgressBar();
